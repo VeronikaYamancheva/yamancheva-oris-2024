@@ -2,7 +2,7 @@ package ru.vhsroni.model;
 
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor

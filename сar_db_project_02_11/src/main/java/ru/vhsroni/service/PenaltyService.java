@@ -2,15 +2,15 @@ package ru.vhsroni.service;
 
 import ru.vhsroni.model.PenaltyEntity;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public interface PenaltyService {
-    List<PenaltyEntity> findAllByCarId(Long id);
+    List<PenaltyEntity> findAllPenaltiesByCarId(Long id);
 
-    List<PenaltyEntity> findAllWhereAmountLargerThan(int minValue);
+    List<PenaltyEntity> findAllPenaltiesWhereAmountLargerThan(Integer minValue);
 
-    List<PenaltyEntity> findAllOlderThanDate(Date minData);
+    List<PenaltyEntity> findAllPenaltiesOlderThanDate(Date minData);
 
     PenaltyEntity addNewPenalty(PenaltyEntity penalty);
 }

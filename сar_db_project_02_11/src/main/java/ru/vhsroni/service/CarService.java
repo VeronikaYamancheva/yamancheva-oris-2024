@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CarService {
 
-    List<CarEntity> findAll();
+    List<CarEntity> findAllCars();
 
     CarEntity findCarById(Long id);
 
