@@ -17,48 +17,43 @@ import java.util.Scanner;
 public class MethodsUtil {
 
     private static final CarService carService = new CarServiceImpl();
+
     private static final PenaltyServiceImpl penaltyService = new PenaltyServiceImpl();
+
     private static final Scanner sc = new Scanner(System.in);
 
-    public static void invokeMethods() {
-        while (true) {
-            printAvailableServices();
-            Class<?> serviceClass = sc.nextLine().equals("carService")
-                    ? CarServiceImpl.class : PenaltyServiceImpl.class;
+    public static void invokeMethod() {
+        printAvailableServices();
+        Class<?> serviceClass = sc.nextLine().equals("carService")
+                ? CarServiceImpl.class : PenaltyServiceImpl.class;
 
-            Method currentMethod = null;
-            printAvailableMethods(serviceClass);
+        Method currentMethod = null;
+        printAvailableMethods(serviceClass);
 
-            while (currentMethod == null) {
-                String methodName = sc.nextLine();
-                currentMethod = findMethodByName(methodName, serviceClass);
-            }
-
-            Parameter[] params = currentMethod.getParameters();
-            try {
-                if (params.length == 0) {
-                    System.out.println("This method has no parameters.");
-                    Object methodResult = currentMethod.invoke(getServiceInstanceByClass(serviceClass));
-                    System.out.println(methodResult);
-                } else {
-                    printParams(params);
-                    String[] stringValues = sc.nextLine().split(", ");
-                    Object[] paramsValues = convertAllParams(params, stringValues);
-                    Object methodResult = currentMethod.invoke(getServiceInstanceByClass(serviceClass),
-                            paramsValues);
-                    System.out.println(methodResult);
-                }
-            } catch (InvocationTargetException | IllegalAccessException e) {
-                System.out.println("There are problems with invocation this method");
-            }
-
-            System.out.println("\n Do you want to exit? (Print `Yes`/`No` in the line below);");
-            String answer = sc.nextLine();
-            if (answer.equals("Yes")) {
-                break;
-            }
-            System.out.println("You can call the following method. \n");
+        while (currentMethod == null) {
+            String methodName = sc.nextLine();
+            currentMethod = findMethodByName(methodName, serviceClass);
         }
+
+        Parameter[] params = currentMethod.getParameters();
+        try {
+            if (params.length == 0) {
+                System.out.println("This method has no parameters.");
+                Object methodResult = currentMethod.invoke(getServiceInstanceByClass(serviceClass));
+                System.out.println(methodResult);
+            } else {
+                printParams(params);
+                String[] stringValues = sc.nextLine().split(", ");
+                Object[] paramsValues = convertAllParams(params, stringValues);
+                Object methodResult = currentMethod.invoke(getServiceInstanceByClass(serviceClass),
+                        paramsValues);
+                System.out.println(methodResult);
+            }
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            System.out.println("There are problems with invocation this method");
+        }
+
+        System.out.println("You can call the following method. \n");
     }
 
     private static Object[] convertAllParams(Parameter[] parameters, String[] stringValues) {

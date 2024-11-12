@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class SignInRequest {
 
-    private String email;
+    private String signInAttr;
 
     private String password;
 
