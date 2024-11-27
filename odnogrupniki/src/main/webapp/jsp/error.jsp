@@ -1,29 +1,39 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 09.11.2024
-  Time: 14:26
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
-    <title>Ooops! Error</title>
+    <title>Error</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles/main.css"/>
+    <link rel="stylesheet" href="/styles/error.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<h1>Error:</h1>
+<header>
+    <div class="title">Odnogrupniki
+        <div class="little-title">v-ITIS-e</div>
+    </div>
+    <div class="logo-container">
+        <img src="/images/logo_1.png" alt="logo-1"/>
+        <img src="/images/logo_2.png" alt="logo-2"/>
+        <img src="/images/logo_3.png" alt="logo-3"/>
+    </div>
+</header>
 
-<center>
-    <img src="https://cdn.culture.ru/images/f306845c-56ef-5ce8-8183-68a541619508" style="width: 100%; height: 50%">
-
-    <%=request.getParameter("err")%>
-
-    <hr>
-    <a href="/">На главную</a>
-</center>
-
-
-
+<main>
+    <div class="horizontal-container">
+        <img src="/images/error.png" alt="error"/>
+        <div class="vertical-container">
+            <div class="error-title">ERROR</div>
+            <div class="error-desc">
+                <%=request.getParameter("err")%>
+            </div>
+            <a href="/">Go to greeting page!</a>
+        </div>
+    </div>
+</main>
 </body>
 </html>
