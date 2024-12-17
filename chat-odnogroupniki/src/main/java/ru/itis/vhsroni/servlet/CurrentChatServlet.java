@@ -26,6 +26,7 @@ public class CurrentChatServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDataResponse user = (UserDataResponse) req.getSession().getAttribute("user");
         String message = req.getParameter("message");
+        System.out.println(message);
         Long chatId = null;
         try {
             chatId = Long.parseLong(req.getParameter("id"));
@@ -33,7 +34,7 @@ public class CurrentChatServlet extends HttpServlet {
             req.setAttribute("err", "Incorrect chat id");
             req.getRequestDispatcher("jsp/error.jsp").forward(req, resp);
         }
-        if(!chatsService.isUserChat(user.getId(), chatId)) {
+        if (!chatsService.isUserChat(user.getId(), chatId)) {
             req.setAttribute("err", "Not your chat!");
             req.getRequestDispatcher("jsp/error.jsp").forward(req, resp);
         }
@@ -42,7 +43,7 @@ public class CurrentChatServlet extends HttpServlet {
                 .chatId(chatId)
                 .text(message)
                 .build());
-        resp.sendRedirect("/chat?id="+chatId);
+        resp.sendRedirect("/chat?id=" + chatId);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class CurrentChatServlet extends HttpServlet {
             req.setAttribute("err", "Incorrect chat id");
             req.getRequestDispatcher("jsp/error.jsp").forward(req, resp);
         }
-        if(!chatsService.isUserChat(user.getId(), chatId)) {
+        if (!chatsService.isUserChat(user.getId(), chatId)) {
             req.setAttribute("err", "Not your chat!");
             req.getRequestDispatcher("jsp/error.jsp").forward(req, resp);
         }

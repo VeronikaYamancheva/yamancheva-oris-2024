@@ -51,9 +51,9 @@ public class ChatCommunicationWebSocketHandler {
                 .build());
 
         List<UserEntity> usersInChat = chatRepository.findAllUsersInChat(webSocketMessage.getChatId());
-        for(UserEntity user : usersInChat) {
+        for (UserEntity user : usersInChat) {
             log.info("Проверяю пользователя {}", user.getId());
-            if(sessions.containsKey(user.getId())) {
+            if (sessions.containsKey(user.getId())) {
                 log.info("Пользователь {} онлайн, отправляю сообщение", user.getId());
                 sendMessage(sessions.get(user.getId()), message);
             }
@@ -72,8 +72,8 @@ public class ChatCommunicationWebSocketHandler {
 
     private Long findUserIdBySession(Session session) {
         Set<Map.Entry<Long, Session>> entrySet = sessions.entrySet();
-        for(Map.Entry<Long, Session> pair : entrySet) {
-            if(session.equals(pair.getValue())) {
+        for (Map.Entry<Long, Session> pair : entrySet) {
+            if (session.equals(pair.getValue())) {
                 return pair.getKey();
             }
         }

@@ -2,6 +2,7 @@ package ru.itis.vhsroni.servlet;
 
 import ru.itis.vhsroni.dto.UserDataResponse;
 import ru.itis.vhsroni.exception.IncorrectFileTypeException;
+import ru.itis.vhsroni.model.UserEntity;
 import ru.itis.vhsroni.service.FileService;
 import ru.itis.vhsroni.service.UserService;
 
@@ -45,10 +46,12 @@ public class FileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDataResponse user = (UserDataResponse) req.getSession().getAttribute("user");
+        String avatarId = user.getAvatarId();
 
-        UUID fileId = null;
+        UUID fileId = avatarId != null ? UUID.fromString(avatarId) : UUID.randomUUID();
+
         try {
-            fileId = fileService.uploadFile(req.getPart("file"));
+            fileId = fileService.uploadFile(fileId, req.getPart("file"));
         } catch (IncorrectFileTypeException e) {
             resp.sendRedirect("/error?err=Invalid file format");
         }

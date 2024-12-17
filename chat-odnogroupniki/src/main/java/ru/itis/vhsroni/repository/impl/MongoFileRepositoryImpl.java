@@ -37,7 +37,7 @@ public class MongoFileRepositoryImpl implements MongoFileRepository {
     public byte[] getFile(UUID id) {
         Document selector = new Document("id", id.toString());
         Document result = mongoCollection.find(selector).first();
-        if(result != null) {
+        if (result != null) {
             return result.get("file", Binary.class).getData();
         }
         throw new FileNotFoundException();

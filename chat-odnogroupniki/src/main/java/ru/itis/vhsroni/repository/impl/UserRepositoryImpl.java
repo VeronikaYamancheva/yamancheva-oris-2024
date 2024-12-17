@@ -38,7 +38,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<UserEntity> findUserById(Long id) {
         try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, new Object[] {id}, userRowMapper));
+            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, new Object[]{id}, userRowMapper));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
@@ -47,7 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<UserEntity> findUserByEmail(String email) {
         try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_SELECT_BY_EMAIL, new Object[] {email}, userRowMapper));
+            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_SELECT_BY_EMAIL, new Object[]{email}, userRowMapper));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
@@ -56,7 +56,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<UserEntity> findUserByNickname(String nickname) {
         try {
-            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_SELECT_BY_NICKNAME, new Object[] {nickname}, userRowMapper));
+            return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_SELECT_BY_NICKNAME, new Object[]{nickname}, userRowMapper));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
@@ -67,7 +67,7 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             KeyHolder holder = new GeneratedKeyHolder();
             jdbcTemplate.update(con -> {
-                PreparedStatement ps = con.prepareStatement(SQL_INSERT, new String[] {"id"});
+                PreparedStatement ps = con.prepareStatement(SQL_INSERT, new String[]{"id"});
                 ps.setString(1, user.getEmail());
                 ps.setString(2, user.getHashPassword());
                 ps.setString(3, user.getNickname());

@@ -23,29 +23,41 @@ public class FileServiceImpl implements FileService {
 
     @Override
     @SneakyThrows
-    public UUID uploadFile(Part part) {
-        UUID uuid = UUID.randomUUID();
+    public UUID uploadFile(UUID uuid, Part part) {
         if (part != null && part.getSize() > 0) {
             String contentType = part.getContentType();
-
             if (!contentType.equalsIgnoreCase("image/jpeg")) {
                 throw new IncorrectFileTypeException();
             }
 
+            File oldFile = new File(path + File.separator + uuid + ".jpg");
+            if (oldFile.exists()) {
+                if (!oldFile.delete()) {
+                    log.error("Failed to delete old avatar for user {}", uuid);
+
+                }
+            }
+
             part.write(path + File.separator + uuid + ".jpg");
-            return uuid;
+        } else {
+            File oldFile = new File(path + File.separator + uuid + ".jpg");
+            if (oldFile.exists()) {
+                if (!oldFile.delete()) {
+                    log.error("Failed to delete old avatar for user {}", uuid);
+                }
+            }
         }
-        return null;
+        return uuid;
     }
 
     @Override
     @SneakyThrows
     public void downloadFile(UUID id, HttpServletResponse response) {
         File imageFile = null;
-        if(id != null) {
+        if (id != null) {
             imageFile = new File(path + File.separator + id + ".jpg");
         }
-        if(imageFile == null || !imageFile.exists()) {
+        if (imageFile == null || !imageFile.exists()) {
             imageFile = new File(path + File.separator + defaultImageName + ".jpg");
         }
         FileInputStream fis = new FileInputStream(imageFile);

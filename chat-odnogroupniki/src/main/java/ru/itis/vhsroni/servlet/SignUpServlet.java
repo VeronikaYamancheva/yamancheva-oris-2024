@@ -25,7 +25,7 @@ public class SignUpServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("jsp/signUp.jsp").forward(req, resp);
+        req.getRequestDispatcher("jsp/sign_up.jsp").forward(req, resp);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SignUpServlet extends HttpServlet {
                 .build();
 
         AuthResponse authResponse = userService.signUp(signUpRequest);
-        if(authResponse.getStatus() == 0) {
+        if (authResponse.getStatus() == 0) {
             resp.sendRedirect("/signIn");
         } else {
             resp.sendRedirect("/error?err=" + authResponse.getStatusDesc());

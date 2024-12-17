@@ -1,0 +1,33 @@
+.chats-layout {
+    padding: 80px;
+    width: 55%;
+    display: block;
+}
+.chats-header {
+    display: block;
+    font-size: 50px;
+    text-align: center;
+}
+.chat-item span{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+}
+.chat-item:hover {
+    background-color: #eec4ae;
+}
+.chat-item img {
+    height: 76px;
+    width: 76px;
+    border-radius: 38px;
+    border: 2px solid #4542f5;
+    margin: 10px;
+}
+.chat-item a{
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    font-size: 30px;
+    color: #212121;
+}

@@ -29,7 +29,7 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("jsp/signIn.jsp").forward(req, resp);
+        req.getRequestDispatcher("jsp/sign_in.jsp").forward(req, resp);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SignInServlet extends HttpServlet {
                 .build();
 
         AuthResponse authResponse = userService.signIn(signUpRequest);
-        if(authResponse.getStatus() == 0) {
+        if (authResponse.getStatus() == 0) {
             HttpSession session = req.getSession(true);
             session.setAttribute(AUTHORIZATION, true);
             session.setAttribute("user", authResponse.getUser());

@@ -21,6 +21,7 @@ import ru.itis.vhsroni.service.FileService;
 import ru.itis.vhsroni.service.UserService;
 import ru.itis.vhsroni.service.impl.ChatsServiceImpl;
 import ru.itis.vhsroni.service.impl.FileMongoServiceImpl;
+import ru.itis.vhsroni.service.impl.FileServiceImpl;
 import ru.itis.vhsroni.service.impl.UserServiceImpl;
 import ru.itis.vhsroni.servlet.ChatWebSocketServlet;
 import ru.itis.vhsroni.util.PropertyReader;
@@ -88,8 +89,8 @@ public class MainServletContextListener implements ServletContextListener {
 
         MongoFileRepository mongoFileRepository = new MongoFileRepositoryImpl(mongoClient);
 
-        //FileService fileService = new FileServiceImpl(filePath, defaultImageName);
-        FileService fileService = new FileMongoServiceImpl(mongoFileRepository, UUID.fromString(defaultImageName));
+        FileService fileService = new FileServiceImpl(filePath, defaultImageName);
+        //FileService fileService = new FileMongoServiceImpl(mongoFileRepository, UUID.fromString(defaultImageName));
         context.setAttribute("fileService", fileService);
 
 

@@ -22,7 +22,7 @@ public class FileMongoServiceImpl implements FileService {
 
     @Override
     @SneakyThrows
-    public UUID uploadFile(Part part) {
+    public UUID uploadFile(UUID uuid, Part part) {
         return mongoFileRepository.saveFile(part.getInputStream());
     }
 
@@ -31,7 +31,7 @@ public class FileMongoServiceImpl implements FileService {
     public void downloadFile(UUID id, HttpServletResponse response) {
         response.setContentType("image/jpeg");
         OutputStream os = response.getOutputStream();
-        if(id == null) {
+        if (id == null) {
             id = defaultImageUuid;
         }
         try {

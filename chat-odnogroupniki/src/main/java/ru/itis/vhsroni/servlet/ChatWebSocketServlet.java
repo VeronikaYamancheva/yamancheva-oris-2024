@@ -48,9 +48,9 @@ public class ChatWebSocketServlet {
                 .build());
         List<UserEntity> usersInChat = chatRepository.findAllUsersInChat(webSocketMessage.getChatId());
         log.warn("Got message for chat {}: {}", webSocketMessage.getChatId(), webSocketMessage.getMessage());
-        for(UserEntity user : usersInChat) {
+        for (UserEntity user : usersInChat) {
             log.info("Смотрю на пользователя {} в чате", user.getId());
-            if(sessions.containsKey(user.getId())) {
+            if (sessions.containsKey(user.getId())) {
                 log.info("Отправил сообщение пользователю {}: {}", user.getId(), message);
                 sendMessage(sessions.get(user.getId()), message);
             }

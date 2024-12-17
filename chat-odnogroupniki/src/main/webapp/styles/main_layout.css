@@ -54,7 +54,7 @@
 }
 
 .news-item {
-    width: 80%;
+    width: 70%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -121,4 +121,31 @@
     padding-top: 5px;
     padding-bottom: 10px;;
     text-align: center;
+}
+
+#avatar  {
+    display: block;
+    align-content: center;
+    height: 300px;
+    width: 300px;
+    margin: auto;
+    border: 7px solid  #4542f5
+}
+
+#nickname {
+    font-size: 30px;
+    display: block;
+    text-align: center;
+}
+
+#avatarForm input{
+    display: block;
+    border: 3px solid #4542f5;
+    padding: 5px 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    color: #4542f5;
+    font-size: 16px;
+    border-radius: 15px;
 }

@@ -39,14 +39,14 @@ public class AuthFilter implements Filter {
 
         String uri = request.getRequestURI();
 
-        if(isUserAuth(request)) {
-            if(isNotAuthUri(uri)) {
+        if (isUserAuth(request)) {
+            if (isNotAuthUri(uri)) {
                 response.sendRedirect(NOTAUTH_REDIRECT);
             } else {
                 filterChain.doFilter(servletRequest, servletResponse);
             }
         } else {
-            if(isProtectedUri(uri)) {
+            if (isProtectedUri(uri)) {
                 response.sendRedirect(PROTECTED_REDIRECT);
             } else {
                 filterChain.doFilter(servletRequest, servletResponse);
@@ -64,7 +64,7 @@ public class AuthFilter implements Filter {
 
     private boolean isUserAuth(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        if(session == null) return false;
+        if (session == null) return false;
 
         Map<String, String> map = new HashMap<>();
         map.put(null, "");
